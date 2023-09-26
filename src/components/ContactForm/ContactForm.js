@@ -20,7 +20,24 @@ const SignupSchema = Yup.object().shape({
 });
 
 export const ContactForm = ({ onAdd }) => {
+  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
+
+  const toAdd = newContact => {
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      return alert(`${newContact.name} is already in contacts`);
+    }
+
+    if (contacts.find(contact => contact.number === newContact.number)) {
+      return alert(`${newContact.number} is already in contacts`);
+    }
+    dispatch(addContact({ ...newContact, id: nanoid() }));
+  };
+
   return (
     <>
       <Formik
@@ -30,7 +47,7 @@ export const ContactForm = ({ onAdd }) => {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values, actions) => {
-          dispatch(addContact({ ...values, id: nanoid() }));
+          toAdd(values);
           actions.resetForm();
         }}
       >
