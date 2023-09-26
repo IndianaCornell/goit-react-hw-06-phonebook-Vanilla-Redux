@@ -6,10 +6,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
-import { useState } from 'react';
-
-const localStorageKey = 'quiz-contacts';
-
 export const App = () => {
   return (
     <Layout>

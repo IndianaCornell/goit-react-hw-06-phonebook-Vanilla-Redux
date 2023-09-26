@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/store';
+import { addContact } from 'redux/contactsSlice';
 
 import {
   StyledForm,
@@ -19,8 +19,8 @@ const SignupSchema = Yup.object().shape({
   number: Yup.number().required().positive().integer().min('5'),
 });
 
-export const ContactForm = ({ onAdd }) => {
-  const contacts = useSelector(state => state.contacts);
+export const ContactForm = () => {
+  const { contacts } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const toAdd = newContact => {
