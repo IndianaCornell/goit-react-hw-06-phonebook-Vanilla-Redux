@@ -42,7 +42,7 @@ export const ContactForm = () => {
     <>
       <Formik
         initialValues={{
-          name: '',
+          name: 'Name',
           number: '',
         }}
         validationSchema={SignupSchema}
